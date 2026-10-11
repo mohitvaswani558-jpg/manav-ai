@@ -1,0 +1,59 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+    match /students/{studentId} {
+      allow read, write: if true;
+    }
+    match /teachers/{teacherId} {
+      allow read, write: if true;
+    }
+    match /challenges/{challengeId} {
+      allow read, write: if true;
+    }
+    match /attempts/{attemptId} {
+      allow read, write: if true;
+    }
+    match /reflections/{reflectionId} {
+      allow read, write: if true;
+    }
+    match /evaluations/{evaluationId} {
+      allow read, write: if true;
+    }
+    match /growthRecords/{growthRecordId} {
+      allow read, write: if true;
+    }
+    match /growthEvidence/{evidenceId} {
+      allow read, write: if true;
+    }
+    match /dailyTests/{testId} {
+      allow read, write: if true;
+    }
+    match /studentProfiles/{profileId} {
+      allow read, write: if true;
+    }
+    match /rewards/{rewardId} {
+      allow read, write: if true;
+    }
+    match /storageItems/{itemId} {
+      allow read, write: if true;
+    }
+    match /messages/{messageId} {
+      allow read, write: if true;
+    }
+    match /notifications/{notificationId} {
+      allow read, write: if true;
+    }
+    match /streaks/{userId} {
+      allow read, write: if true;
+    }
+    match /teacherObservations/{obsId} {
+      allow read, write: if true;
+    }
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

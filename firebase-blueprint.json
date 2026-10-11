@@ -1,0 +1,320 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User account registration details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string" },
+        "fullName": { "type": "string" },
+        "role": { "type": "string", "enum": ["student", "teacher"] },
+        "pairingCode": { "type": "string" },
+        "teacherId": { "type": "string" },
+        "age": { "type": "number" },
+        "passwordHash": { "type": "string" },
+        "verificationOtp": { "type": "string" },
+        "otpExpiresAt": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "email", "fullName", "role"]
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Student profile and metadata",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "pairingCode": { "type": "string" },
+        "teacherId": { "type": "string" },
+        "age": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "name", "email"]
+    },
+    "Teacher": {
+      "title": "Teacher",
+      "description": "Faculty / Teacher profile",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "name", "email"]
+    },
+    "Challenge": {
+      "title": "Challenge",
+      "description": "Scenario-based developmental challenge",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "scenario": { "type": "string" },
+        "question": { "type": "string" },
+        "instructions": { "type": "string" },
+        "difficulty": { "type": "string" },
+        "estimatedMinutes": { "type": "number" },
+        "expectedOutputType": { "type": "string" },
+        "hints": { "type": "array" },
+        "criteria": { "type": "array" },
+        "rubric": { "type": "object" },
+        "active": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "title", "scenario", "question"]
+    },
+    "Attempt": {
+      "title": "Attempt",
+      "description": "Student attempt on a challenge",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "challengeId": { "type": "string" },
+        "startedAt": { "type": "string" },
+        "submittedAt": { "type": "string" },
+        "timeTaken": { "type": "number" },
+        "attemptCount": { "type": "number" },
+        "hintsUsed": { "type": "number" },
+        "hintIdsUsed": { "type": "array" },
+        "revisionCount": { "type": "number" },
+        "selectedOption": { "type": "string" },
+        "answerChanged": { "type": "boolean" },
+        "changeCount": { "type": "number" },
+        "optionalReasoning": { "type": "string" },
+        "answer": { "type": "string" },
+        "completed": { "type": "boolean" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "studentId", "challengeId"]
+    },
+    "Reflection": {
+      "title": "Reflection",
+      "description": "Student qualitative reflection entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "attemptId": { "type": "string" },
+        "studentId": { "type": "string" },
+        "challengeId": { "type": "string" },
+        "difficulty": { "type": "string" },
+        "changedApproach": { "type": "boolean" },
+        "whatChanged": { "type": "string" },
+        "whatLearned": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "studentId", "attemptId"]
+    },
+    "Evaluation": {
+      "title": "Evaluation",
+      "description": "AI analysis and criteria assessment result",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "attemptId": { "type": "string" },
+        "studentId": { "type": "string" },
+        "challengeId": { "type": "string" },
+        "status": { "type": "string" },
+        "criteriaResults": { "type": "array" },
+        "strengths": { "type": "array" },
+        "growthAreas": { "type": "array" },
+        "feedback": { "type": "string" },
+        "insufficientEvidence": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "attemptId", "studentId", "challengeId"]
+    },
+    "GrowthRecord": {
+      "title": "GrowthRecord",
+      "description": "Observable developmental growth evidence record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "attemptId": { "type": "string" },
+        "challengeId": { "type": "string" },
+        "evaluationId": { "type": "string" },
+        "criterionId": { "type": "string" },
+        "criterionName": { "type": "string" },
+        "level": { "type": "string" },
+        "evidence": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "studentId", "criterionName", "level", "evidence"]
+    },
+    "Reward": {
+      "title": "Reward",
+      "description": "Milestone recognition sent by teachers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "teacherId": { "type": "string" },
+        "teacherName": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "type": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "url": { "type": "string" },
+        "fileSize": { "type": "number" },
+        "fileType": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "teacherId", "studentId", "type", "title"]
+    },
+    "StorageItem": {
+      "title": "StorageItem",
+      "description": "Permanent study materials and cohort resources",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "type": { "type": "string" },
+        "senderName": { "type": "string" },
+        "url": { "type": "string" },
+        "content": { "type": "string" },
+        "fileSize": { "type": "string" },
+        "fileType": { "type": "string" },
+        "sharedWithCohort": { "type": "boolean" },
+        "targetStudentId": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "name", "type"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Direct communication message between mentor and student",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "receiverId": { "type": "string" },
+        "content": { "type": "string" },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "senderId", "receiverId", "content"]
+    },
+    "NotificationItem": {
+      "title": "NotificationItem",
+      "description": "In-portal system notification",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "type": { "type": "string" },
+        "link": { "type": "string" },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "message"]
+    },
+    "Streak": {
+      "title": "Streak",
+      "description": "Student daily test consistency streak tracker",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "currentStreak": { "type": "number" },
+        "longestStreak": { "type": "number" },
+        "lastCompletedDate": { "type": "string" },
+        "history": { "type": "array" }
+      },
+      "required": ["userId", "currentStreak", "longestStreak"]
+    },
+    "TeacherObservation": {
+      "title": "TeacherObservation",
+      "description": "Qualitative developmental note from a faculty mentor",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "teacherId": { "type": "string" },
+        "teacherName": { "type": "string" },
+        "studentId": { "type": "string" },
+        "note": { "type": "string" },
+        "observedDate": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "teacherId", "studentId", "note"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Application user account records"
+    },
+    "/students/{studentId}": {
+      "schema": "Student",
+      "description": "Student developmental profiles"
+    },
+    "/teachers/{teacherId}": {
+      "schema": "Teacher",
+      "description": "Teacher and faculty mentor profiles"
+    },
+    "/challenges/{challengeId}": {
+      "schema": "Challenge",
+      "description": "Scenario practice challenges and dynamic rubrics"
+    },
+    "/attempts/{attemptId}": {
+      "schema": "Attempt",
+      "description": "Student challenge attempt activity records"
+    },
+    "/reflections/{reflectionId}": {
+      "schema": "Reflection",
+      "description": "Student challenge reflection entries"
+    },
+    "/evaluations/{evaluationId}": {
+      "schema": "Evaluation",
+      "description": "Multi-criteria evaluation results"
+    },
+    "/growthRecords/{growthRecordId}": {
+      "schema": "GrowthRecord",
+      "description": "Longitudinal observable growth evidence entries"
+    },
+    "/rewards/{rewardId}": {
+      "schema": "Reward",
+      "description": "Teacher milestone recognition awards"
+    },
+    "/storageItems/{itemId}": {
+      "schema": "StorageItem",
+      "description": "Permanent educational materials and study resources"
+    },
+    "/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Teacher-student direct messages"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "NotificationItem",
+      "description": "In-portal activity notifications"
+    },
+    "/streaks/{userId}": {
+      "schema": "Streak",
+      "description": "Daily practice streak and consistency history"
+    },
+    "/teacherObservations/{observationId}": {
+      "schema": "TeacherObservation",
+      "description": "Faculty observations and guidance records"
+    }
+  }
+}

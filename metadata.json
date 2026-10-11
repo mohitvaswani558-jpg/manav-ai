@@ -1,0 +1,6 @@
+{
+  "name": "MANAV",
+  "description": "Education That Awakens Human Potential — Beyond Marks. Discover Who You Are Becoming.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
